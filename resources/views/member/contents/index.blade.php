@@ -1,0 +1,5 @@
+<x-layouts.manage title="Artikel & Kegiatan Saya">
+<div class="d-flex justify-content-between align-items-center mb-4"><div><h4 class="fw-bold">Artikel & Kegiatan Saya</h4><p class="text-body-secondary">Publikasi yang dibuat menggunakan akun anggota Anda.</p></div><a href="{{ route('member.contents.create') }}" class="btn btn-success">Tambah Artikel / Kegiatan</a></div>
+@if(session('status'))<div class="alert alert-success">{{ session('status') }}</div>@endif
+<div class="card bg-body border-body-subtle rounded-4"><div class="table-responsive"><table class="table align-middle mb-0"><thead><tr><th>Jenis</th><th>Judul</th><th>Tanggal</th><th>Pengunggah</th></tr></thead><tbody>@forelse($contents as $content)<tr><td>{{ $content->type === 'berita' ? 'Artikel / Berita' : 'Materi Kegiatan' }}</td><td>{{ $content->title }}</td><td>{{ $content->created_at?->format('d/m/Y') }}</td><td>{{ auth()->user()->member?->nia ?: auth()->user()->nia }}</td></tr>@empty<tr><td colspan="4" class="text-center text-body-secondary py-4">Belum ada artikel atau kegiatan.</td></tr>@endforelse</tbody></table></div></div>
+</x-layouts.manage>
